@@ -18,7 +18,6 @@ const Homepage = () => {
   const history = useHistory();
   useEffect(() => {
     const user = JSON.parse(localStorage.getItem("userInfo"));
-    console.log(user);
     if (user) history.push("/chats");
   }, [history]);
 
