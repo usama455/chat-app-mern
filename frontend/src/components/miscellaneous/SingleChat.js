@@ -20,9 +20,14 @@ import io from "socket.io-client";
 import Lottie from "react-lottie";
 import animationData from "../../animations/typing.json";
 
-const ENDPOINT = "https://chit-chating.herokuapp.com/";
+const ENDPOINT = process.env.REACT_APP_API_ENDPOINT;
 var socket, selectedChatCompare;
 
+const API = process.env.REACT_APP_API_ENDPOINT
+
+const req = axios.create({
+    baseURL: API, // The base URL of your backend server
+});
 const SingleChat = ({ fetchAgain, setFetchAgain }) => {
   const [messages, setMessages] = useState([]);
   const [loading, setLoading] = useState(false);
@@ -84,7 +89,7 @@ const SingleChat = ({ fetchAgain, setFetchAgain }) => {
 
       setLoading(true);
 
-      const { data } = await axios.get(
+      const { data } = await req.get(
         `/api/message/${selectedChat._id}`,
         config
       );
@@ -115,7 +120,7 @@ const SingleChat = ({ fetchAgain, setFetchAgain }) => {
           },
         };
         setNewMessage("");
-        const { data } = await axios.post(
+        const { data } = await req.post(
           "/api/message",
           {
             content: newMessage,

@@ -6,7 +6,11 @@ import { useState } from "react";
 import axios from "axios";
 import { useToast } from "@chakra-ui/react";
 import { useHistory } from "react-router-dom";
+const API = process.env.REACT_APP_API_ENDPOINT
 
+const req = axios.create({
+    baseURL: API, // The base URL of your backend server
+});
 const Login = () => {
   const [show, setShow] = useState(false);
   const handleClick = () => setShow(!show);
@@ -39,7 +43,7 @@ const Login = () => {
         },
       };
 
-      const { data } = await axios.post(
+      const { data } = await req.post(
         "/api/user/login",
         { email, password },
         config

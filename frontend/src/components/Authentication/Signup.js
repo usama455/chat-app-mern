@@ -6,6 +6,11 @@ import { useToast } from "@chakra-ui/toast";
 import axios from "axios";
 import { useState } from "react";
 import { useHistory } from "react-router";
+const API = process.env.REACT_APP_API_ENDPOINT
+
+const req = axios.create({
+    baseURL: API, // The base URL of your backend server
+});
 
 const Signup = () => {
   const [show, setShow] = useState(false);
@@ -50,7 +55,7 @@ const Signup = () => {
           "Content-type": "application/json",
         },
       };
-      const { data } = await axios.post(
+      const { data } = await req.post(
         "/api/user",
         {
           name,
