@@ -1,6 +1,7 @@
 {
   "name": "frontend",
   "version": "0.1.0",
+  "proxy": "https://web-production-8cf2.up.railway.app/",
   "private": true,
   "dependencies": {
     "@chakra-ui/icons": "^1.0.13",

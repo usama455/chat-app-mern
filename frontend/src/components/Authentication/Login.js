@@ -5,7 +5,6 @@ import { VStack } from "@chakra-ui/layout";
 import { useState } from "react";
 import axios from "axios";
 import { useToast } from "@chakra-ui/react";
-import { useHistory } from "react-router-dom";
 const API = process.env.REACT_APP_API_ENDPOINT
 
 const req = axios.create({
@@ -18,8 +17,6 @@ const Login = () => {
   const [email, setEmail] = useState();
   const [password, setPassword] = useState();
   const [loading, setLoading] = useState(false);
-
-  const history = useHistory();
 
   const submitHandler = async () => {
     setLoading(true);
