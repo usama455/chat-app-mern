@@ -4,7 +4,7 @@
   "description": "",
   "main": "server.js",
   "scripts": {
-   "build": "cd frontend && yarn build",
+    "build": "npm install --legacy-peer-deps && npm install --legacy-peer-deps --prefix frontend && npm run build --prefix frontend",
     "deploy": "gh-pages -d build",
     "start": "nodemon backend/server.js"
   },
