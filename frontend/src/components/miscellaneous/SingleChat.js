@@ -23,11 +23,6 @@ import animationData from "../../animations/typing.json";
 const ENDPOINT = process.env.REACT_APP_API_ENDPOINT;
 var socket, selectedChatCompare;
 
-const API = process.env.REACT_APP_API_ENDPOINT
-
-const req = axios.create({
-    baseURL: API, // The base URL of your backend server
-});
 const SingleChat = ({ fetchAgain, setFetchAgain }) => {
   const [messages, setMessages] = useState([]);
   const [loading, setLoading] = useState(false);
@@ -89,7 +84,7 @@ const SingleChat = ({ fetchAgain, setFetchAgain }) => {
 
       setLoading(true);
 
-      const { data } = await req.get(
+      const { data } = await axios.get(
         `/api/message/${selectedChat._id}`,
         config
       );
@@ -120,7 +115,7 @@ const SingleChat = ({ fetchAgain, setFetchAgain }) => {
           },
         };
         setNewMessage("");
-        const { data } = await req.post(
+        const { data } = await axios.post(
           "/api/message",
           {
             content: newMessage,

@@ -19,11 +19,7 @@ import { ChatState } from "../../Context/ChatProvider";
 import UserBadgeItem from "../userAvatar/UserBadgeItem";
 import UserListItem from "../userAvatar/UserListItem";
 import ChatLoading from "./ChatLoading";
-const API = process.env.REACT_APP_API_ENDPOINT
 
-const req = axios.create({
-    baseURL: API, // The base URL of your backend server
-});
 const GroupChatModal = ({ children }) => {
   const { isOpen, onOpen, onClose } = useDisclosure();
   const [groupChatName, setGroupChatName] = useState();
@@ -63,7 +59,7 @@ const GroupChatModal = ({ children }) => {
           Authorization: `Bearer ${user.token}`,
         },
       };
-      const { data } = await req.get(`/api/user?search=${search}`, config);
+      const { data } = await axios.get(`/api/user?search=${search}`, config);
       setLoading(false);
       setSearchResult(data);
     } catch (error) {
@@ -100,7 +96,7 @@ const GroupChatModal = ({ children }) => {
           Authorization: `Bearer ${user.token}`,
         },
       };
-      const { data } = await req.post(
+      const { data } = await axios.post(
         `/api/chat/group`,
         {
           name: groupChatName,

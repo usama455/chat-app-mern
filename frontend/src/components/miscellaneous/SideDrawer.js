@@ -31,11 +31,6 @@ import UserListItem from "../userAvatar/UserListItem";
 import { getSender } from "../../config/ChatLogics";
 import NotificationBadge from "react-notification-badge";
 import { Effect } from "react-notification-badge";
-const API = process.env.REACT_APP_API_ENDPOINT
-
-const req = axios.create({
-    baseURL: API, // The base URL of your backend server
-});
 
 const SideDrawer = () => {
   const [search, setSearch] = useState("");
@@ -83,7 +78,7 @@ const SideDrawer = () => {
           Authorization: `Bearer ${user.token}`,
         },
       };
-      const { data } = await req.get(`/api/user?search=${search}`, config);
+      const { data } = await axios.get(`/api/user?search=${search}`, config);
 
       setLoading(false);
       setSearchResult(data);
@@ -110,7 +105,7 @@ const SideDrawer = () => {
           Authorization: `Bearer ${user.token}`,
         },
       };
-      const { data } = await req.post(`/api/chat`, { userId }, config);
+      const { data } = await axios.post(`/api/chat`, { userId }, config);
 
       if (!chats.find((c) => c._id === data._id)) setChats([data, ...chats]);
       setSelectedChat(data);

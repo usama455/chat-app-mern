@@ -5,11 +5,7 @@ import React, { useState, useEffect } from "react";
 import { getSender } from "../../config/ChatLogics";
 import { ChatState } from "../../Context/ChatProvider";
 import GroupChatModal from "./GroupChatModal";
-const API = process.env.REACT_APP_API_ENDPOINT
 
-const req = axios.create({
-    baseURL: API, // The base URL of your backend server
-});
 const MyChats = ({ fetchAgain }) => {
   const [loggedUser, setLoggedUser] = useState();
   const { selectedChat, setSelectedChat, user, chats, setChats } = ChatState();
@@ -24,7 +20,7 @@ const MyChats = ({ fetchAgain }) => {
         },
       };
 
-      const { data } = await req.get("/api/chat", config);
+      const { data } = await axios.get("/api/chat", config);
       setChats(data);
     } catch (error) {
       toast({
