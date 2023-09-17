@@ -44,7 +44,7 @@ const server = app.listen(port, console.log("Hello world"));
 const io = require("socket.io")(server, {
   pingTimeout: 60000,
   cors: {
-    origin: "http://localhost:3000",
+    origin: "*",
   },
 });
 
