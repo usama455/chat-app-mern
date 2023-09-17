@@ -1,0 +1,6 @@
+{
+    "rewrites":[{
+        "source":"/api/:match*",
+        "destination":"https://web-production-8cf2.up.railway.app/:match*"
+    }]
+}
